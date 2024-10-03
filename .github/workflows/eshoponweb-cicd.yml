@@ -4,10 +4,10 @@ on: [push, workflow_dispatch]
 
 env:
   AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
-  RESOURCE-GROUP: rg-eshoponweb-brami
+  RESOURCE_GROUP: rg-eshoponweb-brami
   LOCATION: eastus
-  SUBSCRIPTION-ID: 2850e1d9-c302-4a1d-a682-1a7a802d6540
-  WEBAPP-NAME: eshoponweb-uniquealias
+  SUBSCRIPTION_ID: 2850e1d9-c302-4a1d-a682-1a7a802d6540
+  WEBAPP_NAME: eshoponweb-bramhi
 
 jobs:
   buildandtest:
@@ -70,8 +70,8 @@ jobs:
       - name: Deploy
         uses: azure/arm-deploy@v2
         with:
-          subscriptionId: ${{ env.SUBSCRIPTION-ID }}
-          resourceGroupName: ${{ env.RESOURCE-GROUP }}
+          subscriptionId: ${{ env.SUBSCRIPTION_ID }}
+          resourceGroupName: ${{ env.RESOURCE_GROUP }}
           template: ./bicep-template/webapp.bicep  # Ensure this path is correct
-          parameters: 'webAppName=${{ env.WEBAPP-NAME }} location=${{ env.LOCATION }}'
+          parameters: 'webAppName=${{ env.WEBAPP_NAME }} location=${{ env.LOCATION }}'
           failOnStdErr: false
